@@ -2,3 +2,8 @@
 name = "revord"
 version = "0.0.1"
 authors = ["Brandon Sanderson <bas.bsanders@gmail.com>"]
+
+description = "Reversed ordering crate for rust"
+repository = "https://github.com/brandonson/revord-rs"
+license = "MIT"
+readme = "README.md"
