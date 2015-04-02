@@ -23,6 +23,14 @@
 
 use std::cmp::Ordering;
 
+///Type that should be ordered in
+///the reverse order of any value it contains.
+///
+///This only implements the ordering traits
+///when V does, and will never implement any traits
+///other than PartialEq, PartialOrd, Eq, and Ord.
+///Extract the value to use it in other ways.
+///Note: revord_var.0 can be used to extract the value
 pub struct RevOrd<V>(pub V);
 
 impl<V> PartialEq for RevOrd<V> where V: PartialEq {
