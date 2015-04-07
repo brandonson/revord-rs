@@ -31,6 +31,7 @@ use std::cmp::Ordering;
 ///other than PartialEq, PartialOrd, Eq, and Ord.
 ///Extract the value to use it in other ways.
 ///Note: revord_var.0 can be used to extract the value
+#[unstable]
 pub struct RevOrd<V>(pub V);
 
 impl<V> PartialEq for RevOrd<V> where V: PartialEq {
