@@ -1,6 +1,6 @@
 [package]
 name = "revord"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Brandon Sanderson <bas.bsanders@gmail.com>"]
 
 description = "Reversed ordering crate for rust"
