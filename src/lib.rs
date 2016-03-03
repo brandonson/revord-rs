@@ -21,7 +21,10 @@
  *
  */
 
+extern crate num;
+
 use std::cmp::Ordering;
+use num::Bounded;
 
 ///Type that should be ordered in
 ///the reverse order of any value it contains.
@@ -53,9 +56,19 @@ impl<V> Ord for RevOrd<V> where V: Ord {
     }
 }
 
+impl<V: Bounded> Bounded for RevOrd<V> {
+    fn min_value() -> RevOrd<V> {
+        RevOrd(V::max_value())
+    }
+    
+    fn max_value() -> RevOrd<V> {
+        RevOrd(V::min_value())
+    }
+}
+
 #[cfg(test)]
 mod test {
-
+  use super::num::Bounded;
   use super::RevOrd;
 
   #[test]
@@ -63,4 +76,12 @@ mod test {
     assert!(RevOrd(1) > RevOrd(2));
     assert!(RevOrd(1) < RevOrd(0));
   }
+
+    #[test]
+    fn int_bounds_test() {
+        let max: RevOrd<i32> = Bounded::max_value();
+        let min: RevOrd<i32> = Bounded::min_value();
+        
+        assert!(max > min);
+    }
 }

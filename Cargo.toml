@@ -7,3 +7,6 @@ description = "Reversed ordering crate for rust"
 repository = "https://github.com/brandonson/revord-rs"
 license = "MIT"
 readme = "README.md"
+
+[dependencies]
+num = "0.1"
