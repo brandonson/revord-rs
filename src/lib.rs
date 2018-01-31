@@ -22,6 +22,7 @@
  */
 
 use std::cmp::Ordering;
+use std::ops::{Deref, DerefMut};
 
 ///Type that should be ordered in
 ///the reverse order of any value it contains.
@@ -53,6 +54,21 @@ impl<V> Ord for RevOrd<V> where V: Ord {
     }
 }
 
+impl<V> Deref for RevOrd<V> {
+    type Target = V;
+
+    fn deref(&self) -> &V {
+        &self.0
+    }
+}
+
+impl<V> DerefMut for RevOrd<V> {
+    fn deref_mut(&mut self) -> &mut V {
+        &mut self.0
+    }
+}
+
+
 #[cfg(test)]
 mod test {
 
@@ -62,5 +78,14 @@ mod test {
   fn int_test() {
     assert!(RevOrd(1) > RevOrd(2));
     assert!(RevOrd(1) < RevOrd(0));
+  }
+
+  #[test]
+  fn deref_test() {
+    let mut one = RevOrd(1);
+    assert_eq!(1, *one);
+
+    *one = 2;
+    assert_eq!(2, *one);
   }
 }
